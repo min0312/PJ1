@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Board from '../component/Board';
 import Catimg from '../component/Catimg';
 
@@ -7,7 +8,10 @@ export default function Main() {
   return (
     <div className='flex pt-[6vh]'>
       <div className='w-[65vw]'>
-        <h1>Board</h1>
+        <div className='pl-[2vw] pr-[2vw] flex justify-between'>
+          <h1>Board</h1>
+          <Link to={`/Write`}>글쓰기</Link>
+        </div>
         <Board />
       </div>
       <div className='w-[35vw] h-[94vh] bg-slate-100'>

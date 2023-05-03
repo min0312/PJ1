@@ -5,6 +5,7 @@ import Header from "./page/Header";
 import Login from './page/Login';
 import Main from "./page/Main";
 import Post from "./page/Post";
+import Write from "./page/Write";
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
           <Route path="/" element={<Doorway />} />
           <Route path="/Main" element={<Main />} />
           <Route path="/Login" element={<Login />} />
-          <Route path="/:index" element={<Post />} />
+          <Route path="/Post/:indexs" element={<Post />} />
+          <Route path="/Write" element={<Write />} />
         </Routes>
       </div>
     </BrowserRouter>
