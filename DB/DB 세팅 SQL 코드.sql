@@ -28,12 +28,12 @@ SELECT * FROM pj1.board;
 INSERT INTO `pj1`.`board` (`Title`, `Content`, `user_Id`) VALUES ('게시글1', 'Test용', 'admin');
 
 
-CREATE TABLE `pj1`.`comment` (
-  `Indexs` INT NOT NULL AUTO_INCREMENT,
-  `Content` VARCHAR(200) NOT NULL,
+CREATE TABLE `pj1`.`reply` (
+  `reply_Indexs` INT NOT NULL AUTO_INCREMENT,
+  `reply_Content` VARCHAR(200) NOT NULL,
   `comment_id` VARCHAR(45) NOT NULL,
   `board_indexs` INT NOT NULL,
-  PRIMARY KEY (`Indexs`),
+  PRIMARY KEY (`reply_Indexs`),
   INDEX `comment_id_idx` (`comment_id` ASC) VISIBLE,
   INDEX `board_indexs_idx` (`board_indexs` ASC) VISIBLE,
   CONSTRAINT `comment_id`
@@ -47,5 +47,5 @@ CREATE TABLE `pj1`.`comment` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
     
-SELECT * FROM pj1.comment;
-INSERT INTO `pj1`.`comment` (`Content`, `comment_Id`, `board_indexs`) VALUES ('Test 댓글', 'admin', 1);
+SELECT * FROM pj1.reply;
+INSERT INTO `pj1`.`reply` (`reply_Content`, `comment_Id`, `board_indexs`) VALUES ('Test 댓글', 'admin', 1);
