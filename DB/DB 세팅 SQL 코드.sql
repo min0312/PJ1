@@ -12,11 +12,11 @@ INSERT INTO `pj1`.`user` (`Id`, `Password`, `Grade`) VALUES ('admin', 'admin123'
 
 
 CREATE TABLE `pj1`.`board` (
-  `Index` INT NOT NULL AUTO_INCREMENT,
+  `Indexs` INT NOT NULL AUTO_INCREMENT,
   `Title` VARCHAR(20) NOT NULL,
   `Content` VARCHAR(1000) NOT NULL,
   `user_Id` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`Index`),
+  PRIMARY KEY (`Indexs`),
   INDEX `Id_idx` (`user_Id` ASC) VISIBLE,
   CONSTRAINT `Id`
     FOREIGN KEY (`user_Id`)
@@ -29,23 +29,23 @@ INSERT INTO `pj1`.`board` (`Title`, `Content`, `user_Id`) VALUES ('게시글1', 
 
 
 CREATE TABLE `pj1`.`comment` (
-  `Index` INT NOT NULL AUTO_INCREMENT,
+  `Indexs` INT NOT NULL AUTO_INCREMENT,
   `Content` VARCHAR(200) NOT NULL,
   `comment_id` VARCHAR(45) NOT NULL,
-  `board_index` INT NOT NULL,
-  PRIMARY KEY (`Index`),
+  `board_indexs` INT NOT NULL,
+  PRIMARY KEY (`Indexs`),
   INDEX `comment_id_idx` (`comment_id` ASC) VISIBLE,
-  INDEX `board_index_idx` (`board_index` ASC) VISIBLE,
+  INDEX `board_indexs_idx` (`board_indexs` ASC) VISIBLE,
   CONSTRAINT `comment_id`
     FOREIGN KEY (`comment_id`)
     REFERENCES `pj1`.`user` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `board_index`
-    FOREIGN KEY (`board_index`)
-    REFERENCES `pj1`.`board` (`Index`)
+  CONSTRAINT `board_indexs`
+    FOREIGN KEY (`board_indexs`)
+    REFERENCES `pj1`.`board` (`Indexs`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
     
 SELECT * FROM pj1.comment;
-INSERT INTO `pj1`.`comment` (`Content`, `comment_Id`, `board_index`) VALUES ('Test 댓글', 'admin', 1);
+INSERT INTO `pj1`.`comment` (`Content`, `comment_Id`, `board_indexs`) VALUES ('Test 댓글', 'admin', 1);
