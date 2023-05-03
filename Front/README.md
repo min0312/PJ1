@@ -78,13 +78,17 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 ## 화면 구성
-- Header: About Me / Portfolio / Board 이동 링크
-- Main: 간단 소개
-- About Me: 자세한 소개
-- Portfolio: 진행 프로젝트 소개
-- Board: 고양이 사진 API + chatGPT API 활용 챗봇 + MySQL/Node.js 연동 Connect 게시판
-- Footer: 노션/깃허브/인스타그램 링크
+### 개인 블로그
+- Header : Doorway 페이지 / Login 페이지
+- Doorway : Main & Login 이동 버튼
+- Main : Board & Catimg & chatGPT 채팅봇
+- Board
+  - 글쓰기/삭제/수정 : Admin 권한(버튼 상시 노출 -> Login 페이지로 이동, 로그인 권한 불일치 시 권한없음 alert)
+  - 댓글 작성/삭제/수정 : User 권한(버튼 상시 노출 -> Login 페이지로 이동, 로그인 권한 불일치 시 권한없음 alert)
+  - 글 및 댓글 view : All
 
 
-#### 아이콘 링크
-https://noticon.tammolo.com/
+## DB 구성
+- User : Id(pk) password grade
+- Board : index(pk ai) title content user_id(fk)
+- comment : index(pk ai) content comment_id(fk) board_index(fk)

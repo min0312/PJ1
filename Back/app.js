@@ -8,7 +8,7 @@ app.use(cors());
 
 app.get('/board', async (req, res) => {
   try {
-    const result = await db.query('SELECT * FROM ad');
+    const result = await db.query('SELECT * FROM board');
     res.json(result);
   } catch (err) {
     console.error(err);
