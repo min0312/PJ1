@@ -1,4 +1,7 @@
 npm install cors
 npm install mysql
 npm install dotenv
-npm install passport passport-local express-session
+npm install express
+npm install express-session
+npm install body-parser
+npm install session-file-store
