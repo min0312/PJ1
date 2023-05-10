@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './App.css';
+import Login from './loginpage/Login';
 import Doorway from './page/Doorway';
 import Header from "./page/Header";
-import Login from './page/Login';
 import Main from "./page/Main";
 import Post from "./page/Post";
 import Write from "./page/Write";
