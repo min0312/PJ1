@@ -95,21 +95,20 @@ app.get('/post/:indexs', async (req, res) => {
 });
 
 app.post('/write', async (req, res) => {
-  jwt.verify(req.token, SECRET_KEY, (err, authData) => {
-    if (err) {
-      if (err.name === 'TokenExpiredError') {
-        return res.status(401).send('토큰이 만료되었습니다.');
-      } else {
-        return res.sendStatus(403);
-      }
-    } else {
-      res.json({
-        message: 'This is a protected route!',
-        authData
-      });
-    }
-  });
-})
+  const { title, content, user } = req.body;
+  if (!title || !content) {
+    res.status(400).send('제목과 내용을 입력해주세요.');
+    return;
+  }
+
+  try {
+    const results = await db.query('INSERT INTO board (Title, Content, user_Id) VALUES (?, ?, ?)', [title, content, user]);
+    res.send('글이 등록되었습니다.');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('글 등록에 실패했습니다.');
+  }
+});
 
 
 app.listen(port, () => {
