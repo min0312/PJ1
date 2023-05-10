@@ -29,7 +29,6 @@ export default function Join() {
         const { success, message } = res.data;
         if (success) { // 서버 응답이 성공일 때 페이지 이동
           alert("가입 성공")
-          console.log("가입 성공", res.data);
           window.location.href = '/Login'; // 페이지 이동
         } else {
           alert(`가입 실패: ${message}`)

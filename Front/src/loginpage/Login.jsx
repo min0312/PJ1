@@ -28,7 +28,7 @@ export default function Login() {
           localStorage.setItem('user', user);
           localStorage.setItem('grade', grade);
           console.log("로그인 성공", res.data);
-          // window.location.href = '/Main'; // 페이지 이동
+          window.location.href = '/Main'; // 페이지 이동
         } else {
           alert("로그인 실패")
           console.log("로그인 실패", res.data);
