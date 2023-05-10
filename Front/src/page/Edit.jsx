@@ -8,7 +8,6 @@ export default function Edit() {
   const [user, setUser] = useState('');
 
   const { indexs } = useParams();
-  console.log(indexs)
 
   useEffect(() => {
     axios.get(`http://localhost:4000/post/${indexs}`)
