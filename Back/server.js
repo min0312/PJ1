@@ -85,8 +85,19 @@ app.get('/board', async (req, res) => {
 app.get('/post/:indexs', async (req, res) => {
   try {
     const indexs = req.params.indexs;
-    const result = await db.query('SELECT * FROM board b, reply r WHERE b.Indexs = ?', [parseInt(indexs)]);
+    const result = await db.query('SELECT * FROM board WHERE Indexs = ?', [parseInt(indexs)]);
     res.json(result[0]);
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
+});
+
+app.get('/reply/:indexs', async (req, res) => {
+  try {
+    const indexs = req.params.indexs;
+    const result = await db.query('SELECT * FROM reply WHERE board_indexs = ?', [parseInt(indexs)]);
+    res.json(result);
   } catch (err) {
     console.error(err);
     res.sendStatus(500);
@@ -120,8 +131,6 @@ app.put('/edit/:indexs', async (req, res) => {
     res.json({ success: false, message: '글 수정에 실패했습니다.' });
   }
 });
-
-
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);

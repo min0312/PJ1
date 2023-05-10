@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import Reply from "../component/Reply";
 
 export default function Post() {
   const [title, setTitle] = useState(null);
@@ -26,19 +27,17 @@ export default function Post() {
   return (
     <div className='pt-[6vh] h-[100vh] flex'>
       <div className="w-[90vw]">
-          <div className="flex">
+          <div className="flex h-[60vh]">
             {title}
             {user}
-          </div>
-          <div>
+            <br/>
             {content}
           </div>
-        <div className="h-[24vh]">
-
+          <div className="h-[24vh]">
+          <Reply />
         </div>
-        {console.log(id)}
       </div>
-      {id  ? (
+      {id === user ? (
           <Link to={`/Edit/${indexs}`}>수정</Link>
           ) : (
             <div></div>
