@@ -132,6 +132,19 @@ app.put('/edit/:indexs', async (req, res) => {
   }
 });
 
+app.put('/replyedit/:reply_Indexs', async (req, res) => {
+  const { reply_Indexs } = req.params;
+  const { editedContent } = req.body;
+
+  try {
+    const result = await db.query(`UPDATE reply SET reply_Content = ? WHERE reply_Indexs = ?`, [editedContent, reply_Indexs]);
+    res.json({ success: true, message: '댓글이 수정되었습니다.' });
+  } catch (error) {
+    console.error(error);
+    res.json({ success: false, message: '댓글 수정에 실패했습니다.' });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });

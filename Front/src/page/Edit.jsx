@@ -30,7 +30,7 @@ export default function Edit() {
         indexs
       });
       alert('글이 수정되었습니다!');
-      window.location.href = '/Main';
+      window.location.href = `/post/${indexs}`;
     } catch (error) {
       console.error(error);
       alert('글 수정에 실패했습니다.');
