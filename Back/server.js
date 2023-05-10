@@ -10,7 +10,7 @@ const { verifyToken, verifyJWTToken } = require('./verify');
 
 app.use(cors({
   origin: 'http://localhost:3000', // 클라이언트 도메인 주소
-  methods: ['GET', 'POST'], // 허용할 http 메소드
+  methods: ['GET', 'POST', 'PUT'], // 허용할 http 메소드
   credentials: true // 쿠키를 전송할 수 있도록 설정
 }));
 app.use(bodyParser.json());
@@ -28,8 +28,7 @@ app.post('/login', async (req, res) => {
             nickname: result[0].Id,
             grade: result[0].Grade
           }, SECRET_KEY, {
-            expiresIn: '60m', // 만료시간
-            issuer: '토큰발급자',
+            expiresIn: '1h', // 만료시간
           });
           res.send({
             success: true,
@@ -109,6 +108,19 @@ app.post('/write', async (req, res) => {
     res.status(500).send('글 등록에 실패했습니다.');
   }
 });
+
+app.put('/edit/:indexs', async (req, res) => {
+  const { title, content, indexs } = req.body;
+
+  try {
+    const result = await db.query(`UPDATE board SET Title = ?, Content = ? WHERE Indexs = ?`, [title, content, indexs]);
+    res.json({ success: true, message: '글이 수정되었습니다.' });
+  } catch (error) {
+    console.error(error);
+    res.json({ success: false, message: '글 수정에 실패했습니다.' });
+  }
+});
+
 
 
 app.listen(port, () => {

@@ -3,13 +3,20 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 export default function Post() {
-  const [data, setData] = useState(null);
+  const [title, setTitle] = useState(null);
+  const [content, setContent] = useState(null);
+  const [user, setUser] = useState(null);
+
   const { indexs } = useParams();
+
+  const id = localStorage.getItem('user')
 
   useEffect(() => {
     axios.get(`http://localhost:4000/post/${indexs}`)
-      .then(response => {
-        setData(response.data);
+      .then(res => {
+        setTitle(res.data.Title)
+        setContent(res.data.Content)
+        setUser(res.data.user_Id)
       })
       .catch(error => {
         console.log(error);
@@ -18,26 +25,24 @@ export default function Post() {
 
   return (
     <div className='pt-[6vh] h-[100vh] flex'>
-      <div className="w-[95vw]">
-        {data && (
-          <>
-            <div className="h-[70vh]">
-              <div className="flex">
-                {data.Title}
-                {data.user_Id}
-              </div>
-              <div>
-                {data.Content}
-              </div>
-            </div>
-            <div className="h-[24vh]">
-              {data.reply_index}
-              {data.reply_Content}
-              {data.comment_id}
-            </div>
-          </>
-        )}
+      <div className="w-[90vw]">
+          <div className="flex">
+            {title}
+            {user}
+          </div>
+          <div>
+            {content}
+          </div>
+        <div className="h-[24vh]">
+
+        </div>
+        {console.log(id)}
       </div>
+      {id  ? (
+          <Link to={`/Edit/${indexs}`}>수정</Link>
+          ) : (
+            <div></div>
+          ) }
       <Link to={`/Main`}>Back</Link>
     </div>
   )
