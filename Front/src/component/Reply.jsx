@@ -57,33 +57,35 @@ export default function Reply() {
   return (
     <div>
       댓글
-      {data && data.map((item, index) => (
-        <div key={index}>
-          <div className="flex gap-3">
-            <p>{item.reply_Content}</p>
-            <p>{item.comment_id}</p>
-            {id === item.comment_id ? (
-              <>
-                <button onClick={() => handleEdit(item)}>수정</button>
-                <button onClick={() => handleDelete(item.reply_Indexs)}>삭제</button>
-              </>
-            ) : null}
+      <div className="h-[15vh] overflow-auto">
+        {data && data.map((item, index) => (
+          <div key={index}>
+            <div className="flex gap-3">
+              <p>{item.reply_Content}</p>
+              <p>{item.comment_id}</p>
+              {id === item.comment_id ? (
+                <>
+                  <button onClick={() => handleEdit(item)}>수정</button>
+                  <button onClick={() => handleDelete(item.reply_Indexs)}>삭제</button>
+                </>
+              ) : null}
+            </div>
+            {showEdit && editData.reply_Indexs === item.reply_Indexs && (
+              <ReplyEdit
+                data={editData}
+                replyIndex={editData.reply_Indexs}
+                boardindexs={editData.board_indexs}
+                onSubmit={() => {
+                  setShowEdit(false);
+                  handleEditSubmit();
+                  setData(null);
+                }} 
+                onCancel={() => setShowEdit(false)}
+              />
+            )}
           </div>
-          {showEdit && editData.reply_Indexs === item.reply_Indexs && (
-            <ReplyEdit
-              data={editData}
-              replyIndex={editData.reply_Indexs}
-              boardindexs={editData.board_indexs}
-              onSubmit={() => {
-                setShowEdit(false);
-                handleEditSubmit();
-                setData(null);
-              }} 
-              onCancel={() => setShowEdit(false)}
-            />
-          )}
-        </div>
-      ))}
+        ))}
+      </div>
       댓글쓰기
       {token ? 
       <ReplyWrite 

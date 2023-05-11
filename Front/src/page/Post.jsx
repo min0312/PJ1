@@ -44,27 +44,33 @@ export default function Post() {
   };
 
   return (
-    <div className='pt-[6vh] h-[100vh] flex'>
-      <div className="w-[90vw]">
+    <div className='pt-[6vh] h-[100vh]'>
+      <div className="flex justify-between">
+        게시판
+        <Link to={`/Main`}>Back</Link>
+      </div>
+      <div className="bg-slate-300 flex justify-between">
           <div className="flex h-[60vh]">
             {title}
             {user}
             <br/>
             {content}
           </div>
-          <div className="h-[24vh]">
-          <Reply />
-        </div>
+          <div className="flex align-top">
+          {id === user ? (
+            <div className="flex align-top bg-slate-600">
+              <Link to={`/Edit/${indexs}`}>수정</Link>
+              <button onClick={() => handleDelete(index)}>삭제</button>
+            </div>
+            ) : (
+              <div></div>
+            ) }
+        
       </div>
-      {id === user ? (
-        <>
-          <Link to={`/Edit/${indexs}`}>수정</Link>
-          <button onClick={() => handleDelete(index)}>삭제</button>
-        </>
-          ) : (
-            <div></div>
-          ) }
-      <Link to={`/Main`}>Back</Link>
+      </div>
+      <div className="h-[24vh]">
+        <Reply />
+      </div>
     </div>
   )
   
