@@ -23,6 +23,7 @@ export default function Reply() {
         console.log(error);
       });
   }, [indexs, data]);
+  
 
   const handleEdit = (item) => {
     setEditData(item);
@@ -57,7 +58,7 @@ export default function Reply() {
     <div>
       댓글
       {data && data.map((item, index) => (
-        <div key={item.reply_Indexs}>
+        <div key={index}>
           <div className="flex gap-3">
             <p>{item.reply_Content}</p>
             <p>{item.comment_id}</p>
