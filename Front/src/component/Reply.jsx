@@ -39,6 +39,16 @@ export default function Reply() {
       });
   }
 
+  const handleDelete = (replyIndex) => {
+    axios.delete(`http://localhost:4000/reply/${replyIndex}`)
+      .then(res => {
+        setData(prevData => prevData.filter(item => item.reply_Indexs !== replyIndex));
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
   const handleWrite = (newData) => {
     setData((prevData) => [newData, ...prevData]);
   };
@@ -52,7 +62,10 @@ export default function Reply() {
             <p>{item.reply_Content}</p>
             <p>{item.comment_id}</p>
             {id === item.comment_id ? (
-              <button onClick={() => handleEdit(item)}>수정</button>
+              <>
+                <button onClick={() => handleEdit(item)}>수정</button>
+                <button onClick={() => handleDelete(item.reply_Indexs)}>삭제</button>
+              </>
             ) : null}
           </div>
           {showEdit && editData.reply_Indexs === item.reply_Indexs && (

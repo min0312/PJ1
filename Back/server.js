@@ -10,7 +10,7 @@ const { verifyToken, verifyJWTToken } = require('./verify');
 
 app.use(cors({
   origin: 'http://localhost:3000', // 클라이언트 도메인 주소
-  methods: ['GET', 'POST', 'PUT'], // 허용할 http 메소드
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // 허용할 http 메소드
   credentials: true // 쿠키를 전송할 수 있도록 설정
 }));
 app.use(bodyParser.json());
@@ -160,6 +160,17 @@ app.put('/replyedit/:reply_Indexs', async (req, res) => {
     console.error(error);
     res.json({ success: false, message: '댓글 수정에 실패했습니다.' });
   }
+});
+
+app.delete('/reply/:replyIndex', async (req, res) => {
+  const id = req.params.replyIndex;
+  try {
+    const result = await db.query('DELETE FROM reply WHERE reply_Indexs = ?', [id])
+    res.json({ success: true, message: '댓글이 삭제되었습니다.' });
+  } catch (error) {
+    console.error(error);
+    res.json({ success: false, message: '댓글 삭제에 실패했습니다.' });
+  } 
 });
 
 app.listen(port, () => {

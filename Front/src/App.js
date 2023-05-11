@@ -15,7 +15,7 @@ export default function App() {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      fetch("http://localhost:4000/")
+      fetch("http://localhost:4000/board")
         .then(() => {
           setConnected(true);
         })
