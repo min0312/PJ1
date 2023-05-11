@@ -120,6 +120,29 @@ app.post('/write', async (req, res) => {
   }
 });
 
+app.put('/edit/:indexs', async (req, res) => {
+  const { title, content, indexs } = req.body;
+
+  try {
+    const result = await db.query(`UPDATE board SET Title = ?, Content = ? WHERE Indexs = ?`, [title, content, indexs]);
+    res.json({ success: true, message: '글이 수정되었습니다.' });
+  } catch (error) {
+    console.error(error);
+    res.json({ success: false, message: '글 수정에 실패했습니다.' });
+  }
+});
+
+app.delete('/post/:Index', async (req, res) => {
+  const id = req.params.Index;
+  try {
+    const result = await db.query('DELETE FROM board WHERE Indexs = ?', [id])
+    res.json({ success: true, message: '글이 삭제되었습니다.' });
+  } catch (error) {
+    console.error(error);
+    res.json({ success: false, message: '글 삭제에 실패했습니다.' });
+  } 
+});
+
 app.post('/replywrite', async (req, res) => {
   const { board_indexs, reply_Content, comment_id } = req.body;
 
@@ -133,19 +156,7 @@ app.post('/replywrite', async (req, res) => {
     res.send({ success: true, message: '댓글이 등록되었습니다.' });
   } catch (error) {
     console.error(error);
-    res.status(500).send('글 등록에 실패했습니다.');
-  }
-});
-
-app.put('/edit/:indexs', async (req, res) => {
-  const { title, content, indexs } = req.body;
-
-  try {
-    const result = await db.query(`UPDATE board SET Title = ?, Content = ? WHERE Indexs = ?`, [title, content, indexs]);
-    res.json({ success: true, message: '글이 수정되었습니다.' });
-  } catch (error) {
-    console.error(error);
-    res.json({ success: false, message: '글 수정에 실패했습니다.' });
+    res.status(500).send('댓글 등록에 실패했습니다.');
   }
 });
 
