@@ -113,7 +113,24 @@ app.post('/write', async (req, res) => {
 
   try {
     const results = await db.query('INSERT INTO board (Title, Content, user_Id) VALUES (?, ?, ?)', [title, content, user]);
-    res.send('글이 등록되었습니다.');
+    res.send({ success: true, message: '글이 등록되었습니다.' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('글 등록에 실패했습니다.');
+  }
+});
+
+app.post('/replywrite', async (req, res) => {
+  const { board_indexs, reply_Content, comment_id } = req.body;
+
+  if (!reply_Content) {
+    res.status(400).send('내용을 입력해주세요.');
+    return;
+  }
+
+  try {
+    const results = await db.query('INSERT INTO reply (board_indexs, reply_Content, comment_id) VALUES (?, ?, ?)', [board_indexs, reply_Content, comment_id]);
+    res.send({ success: true, message: '댓글이 등록되었습니다.' });
   } catch (error) {
     console.error(error);
     res.status(500).send('글 등록에 실패했습니다.');
