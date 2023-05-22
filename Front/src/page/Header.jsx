@@ -22,8 +22,8 @@ export default function Header() {
       <Link to='/' className="w-[10vw] text-xl text-center">Logo</Link>
       <div>
         {localStorage.getItem('token') ? (
-          <div>
-            {user}님 
+          <div className="flex gap-2">
+            <p>{user}님</p> 
             <button onClick={logout}>로그아웃</button>
           </div>
         ) : (

@@ -17,17 +17,17 @@ export default function Board() {
 
   return (
     <>
-      <table className='w-[60vw] m-[2vw] border-collapse'>
+      <table className='w-[95%] m-[2vw] border-collapse'>
         <thead>
           <tr>
-            <th className='border-2 border-black w-[50vw]'>제목</th>
+            <th className='border-2 border-black w-[80%] h-[5vh]'>제목</th>
             <th className='border-2 border-black'>작성자</th>
           </tr>
         </thead>
         <tbody>
           {data.map((item) => (
             <tr key={item.Indexs} className='text-center'>
-              <td className='border-2 border-black'>
+              <td className='border-2 border-black h-[4vh]'>
               <Link to={`/post/${item.Indexs}`}
                 state={{indexs: `${item.Indexs}`}}>
                 {item.Title}

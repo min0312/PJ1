@@ -55,12 +55,12 @@ export default function Reply() {
   };
 
   return (
-    <div>
-      댓글
-      <div className="h-[15vh] overflow-auto">
+    <div className="border-2 p-[1vw]">
+      <p className="text-lg">댓글</p>
+      <div className="pt-[1vh] pb-[1vh]">
         {data && data.map((item, index) => (
           <div key={index}>
-            <div className="flex gap-3">
+            <div className="flex gap-3 border-t-2">
               <p>{item.reply_Content}</p>
               <p>{item.comment_id}</p>
               {id === item.comment_id ? (
@@ -86,16 +86,18 @@ export default function Reply() {
           </div>
         ))}
       </div>
-      댓글쓰기
-      {token ? 
-      <ReplyWrite 
-        boardIndex={indexs} 
-        onWrite={handleWrite} 
-        onSubmit={() => {;
-          handleEditSubmit();
-          setData(null);
-        }}/>
-      : <div>로그인 필요</div>}
+      <div className="border-2 mt-[3vh] p-[1vh]">
+        댓글쓰기
+        {token ? 
+        <ReplyWrite 
+          boardIndex={indexs} 
+          onWrite={handleWrite} 
+          onSubmit={() => {;
+            handleEditSubmit();
+            setData(null);
+          }}/>
+        : <div>로그인 필요</div>}
+      </div>
       
     </div>
   );

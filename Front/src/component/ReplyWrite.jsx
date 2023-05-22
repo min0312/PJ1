@@ -21,13 +21,15 @@ export default function ReplyWrite({ boardIndex, onWrite }) {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="pt-[1vh]">
+      <form onSubmit={handleSubmit} className="w-[100%] pl-[5px]">
         <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
-        ></textarea>
-        <button type="submit">작성</button>
+          className="w-[95%] h-[10vh]"
+          placeholder="댓글을 입력해주세요"
+        />
+        <button type="submit" className="pl-[5px]">작성</button>
       </form>
     </div>
   );

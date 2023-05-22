@@ -44,31 +44,33 @@ export default function Post() {
   };
 
   return (
-    <div className='pt-[6vh] h-[100vh]'>
+    <div className='pt-[6vh] h-[100vh] pl-[15vw] pr-[15vw]'>
       <div className="flex justify-between">
-        게시판
+        <p className="text-lg">게시판</p>
         <Link to={`/Main`}>Back</Link>
       </div>
-      <div className="bg-slate-300 flex justify-between">
-          <div className="flex h-[60vh]">
-            {title}
-            {user}
-            <br/>
+      <div className="h-[85vh] mt-[2vh] overflow-auto">
+        <div className="mb-[1vh] border-2 p-[1vh] pb-[3vh]">
+          <div className="flex justify-between pr-[20px]">
+            <div className="flex justify-between w-[90%]">
+              <p className="text-xl">{title}</p>
+              <p className="">작성자: {user}</p>
+            </div>
+            <div className="flex align-top">
+              {id === user ? (
+                <div className="flex align-top gap-2">
+                  <button className="border-2 h-[35px] w-[45px] rounded-md"><Link to={`/Edit/${indexs}`}>수정</Link></button>
+                  <button className="border-2 h-[35px] w-[45px] rounded-md" onClick={() => handleDelete(index)}>삭제</button>
+                </div>
+                ) : (
+                  <div></div>
+                ) }
+            </div>
+          </div>
+          <div className="p-[1vh]">
             {content}
           </div>
-          <div className="flex align-top">
-          {id === user ? (
-            <div className="flex align-top bg-slate-600">
-              <Link to={`/Edit/${indexs}`}>수정</Link>
-              <button onClick={() => handleDelete(index)}>삭제</button>
-            </div>
-            ) : (
-              <div></div>
-            ) }
-        
-      </div>
-      </div>
-      <div className="h-[24vh]">
+        </div>
         <Reply />
       </div>
     </div>

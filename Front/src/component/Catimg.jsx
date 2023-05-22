@@ -27,10 +27,10 @@ function Catimg() {
     <div>
       <div className="flex justify-between p-[1vw]">
         <h3>고양이가 조와용</h3>
-        <button className="bg-slate-500 w-[3vw] flex justify-center place-items-center rounded-lg" onClick={handleRefresh}><FiRefreshCcw /></button>
+        <button className="border-2 w-[25px] flex justify-center place-items-center rounded-lg" onClick={handleRefresh}><FiRefreshCcw /></button>
       </div>
       <div className="flex justify-center pl-[1vw] pr-[1vw]">
-        <img src={data[0].url} alt={data[0].id} className="h-[22vh]"/>
+        <img src={data[0].url} alt={data[0].id} className="h-[20vh]"/>
       </div>
     </div>
   );
